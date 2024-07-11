@@ -25,11 +25,31 @@ RSpec.describe Registrant do
       #bad permit test
       expect {Registrant.new("Timmy", 15, "yes")}.to raise_error(TypeError, "permit must be a Boolean")
 
+    end
   end
 
-end
+  describe '#permit?' do
+    it 'can determine if the registrant has a permit' do
 
- 
+      expect(@registrant_1.permit?).to eq(true)
+    end
+
+    it' can determine the user has no permit, if no permit data is passed' do
+      expect(@registrant_2.permit?).to eq(false)
+    end
+  end
+
+  describe '#earn_permit' do
+    it 'can change the value of permit to true' do
+      @registrant_2.earn_permit
+      expect(@registrant_2.permit?).to eq(true)
+    end
+
+    it 'does not interfere with registrants with permits' do
+      @registrant_1.earn_permit
+      expect(@registrant_1.permit?).to eq(true)
+    end
+  end
 
 
 
