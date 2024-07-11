@@ -12,20 +12,18 @@ RSpec.describe Registrant do
   describe '#initialize' do
     it 'can initialize' do
       expect(@registrant_1).to be_an_instance_of(Registrant)
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     end
 
     it 'accepts proper values only' do
-      # registrant_bad_name = Registrant.new(13, 15, false )
-      # registrant_bad_age = Registrant.new("Timmy", 13.1)
-      # registrant_bad_data = Registrant.new("Timmy", 15, "yes")
       #bad name test
       expect {Registrant.new(13, 15, false ) }.to raise_error(TypeError, "Name must be a String")
 
       #bad age test
       expect {Registrant.new("Timmy", 13.1) }.to raise_error(TypeError, "Age must be an Integer")
 
-      #bad license_data test
-      expect {Registrant.new("Timmy", 15, "yes")}.to raise_error(TypeError, "License_data must be a Boolean")
+      #bad permit test
+      expect {Registrant.new("Timmy", 15, "yes")}.to raise_error(TypeError, "permit must be a Boolean")
 
   end
 
