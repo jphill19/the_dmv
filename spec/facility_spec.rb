@@ -37,10 +37,10 @@ RSpec.describe Facility do
   describe '#register_vehicle' do
 
     it "will only function if facility has the service to do so" do
-      expect(@facility_1.register_vehicle(@cruz)).to eq("This Facility does not have this service")
+      expect(@facility_1.register_vehicle(@cruz)).to eq([])
 
       @facility_1.add_service('Vehicle Registration')
-      expect(@facility_1.register_vehicle(@cruz)).to eq("Cruz has been registered")
+      expect(@facility_1.register_vehicle(@cruz)).to eq([@cruz])
 
     end
 

@@ -41,10 +41,10 @@ class Facility
 
       @registered_vehicles << vehicle
 
-      return "#{vehicle.model} has been registered"
+      # return "#{vehicle.model} has been registered"
 
     else
-      "This Facility does not have this service"
+      @registered_vehicles
     end
 
   end
@@ -56,9 +56,13 @@ class Facility
         registrant.license_data[:written] = true
       else
         return false
+      end
+
+        ## change the return value of register vehicle to be an array
 
     else
       return false
+    end
   end
 
 end
