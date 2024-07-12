@@ -16,6 +16,9 @@ RSpec.describe Vehicle do
       expect(@cruz.engine).to eq(:ice)
       expect(@cruz.registration_date).to eq(nil)
     end
+
+ 
+
   end
 
   describe '#antique?' do

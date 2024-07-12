@@ -12,6 +12,9 @@ RSpec.describe Registrant do
   describe '#initialize' do
     it 'can initialize' do
       expect(@registrant_1).to be_an_instance_of(Registrant)
+      expect(@registrant_1.name).to eq('Bruce')
+      expect(@registrant_1.age).to eq(18)
+      expect(@registrant_1.permit).to eq(true)
       expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     end
 
@@ -26,6 +29,11 @@ RSpec.describe Registrant do
       expect {Registrant.new("Timmy", 15, "yes")}.to raise_error(TypeError, "permit must be a Boolean")
 
     end
+    it "has writtable attributes that can have its value changed" do
+      @registrant_1.license_data = {:written=>true, :license=>false, :renewed=>false}
+      expect(@registrant_1.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
+    end
+
   end
 
   describe '#permit?' do

@@ -1,3 +1,11 @@
+# custom errors site link = https://www.honeybadger.io/blog/ruby-custom-exceptions/
+
+class WrittenTestAlreadyTakenError< StandardError
+  def initialize(msg="User has already written take the test")
+    super
+  end
+end
+
 
 
 class Facility
@@ -39,19 +47,19 @@ class Facility
 
       vehicle.set_registration_date
 
-      @registered_vehicles << vehicle
+      return @registered_vehicles << vehicle
 
       # return "#{vehicle.model} has been registered"
 
     else
-      @registered_vehicles
+      return @registered_vehicles
     end
 
   end
 
   def administer_written_test(registrant)
     if @services.include?('Written Test')
-      
+      raise TypeError, "registrant must be a registrant object" unless registrant.is_a?(Registrant)
       if registrant.age >= 16 && registrant.permit?
         registrant.license_data[:written] = true
       else
@@ -64,6 +72,41 @@ class Facility
       return false
     end
   end
+
+  def administer_road_test(registrant)
+    if @services.include?('Road Test')
+      raise TypeError, "registrant must be a registrant object" unless registrant.is_a?(Registrant)
+      
+      if registrant.license_data[:written]
+        return registrant.license_data[:license] = true
+      else
+        return false
+      end
+
+    else
+      return false
+
+    end
+
+  end
+
+  def renew_drivers_license(registrant)
+    if @services.include?('Renew License')
+      raise TypeError, "registrant must be a registrant object" unless registrant.is_a?(Registrant)
+      
+      if registrant.license_data[:license]
+        return registrant.license_data[:renewed] = true
+      else
+        return false
+      end
+
+    else
+      return false
+
+    end
+
+  end
+
 
 end
 
