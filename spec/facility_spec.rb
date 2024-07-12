@@ -118,6 +118,13 @@ RSpec.describe Facility do
 
       expect(@facility_1.registered_vehicles).to eq([@cruz, @camaro, @bolt])
     end
+
+    it "can handle edge cases where a vehicle has already been registered" do
+      @facility_1.add_service('Vehicle Registration')
+      @facility_1.register_vehicle(@cruz)
+      expect { @facility_1.register_vehicle(@cruz)}.to raise_error(VehicleAlreadyRegisted,"This vehicle is already registered")
+    end
+
   end
 
   describe '#administer_written_test' do
@@ -159,6 +166,13 @@ RSpec.describe Facility do
       expect(@registrant_1.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
     end
 
+    it "can handle edge cases where registrant has already taken the written test" do
+      expect(@facility_1.administer_written_test(@registrant_1)).to eq(false)
+      @registrant_1.license_data[:written] = true
+      @facility_1.add_service('Written Test')
+      
+      expect {@facility_1.administer_written_test(@registrant_1)}.to raise_error(WrittenTestAlreadyTakenError, "User has already taken the written test")
+    end
   end
 
   describe "#administer_road_test" do
@@ -190,6 +204,15 @@ RSpec.describe Facility do
 
       # Registrant now has license
       expect(@registrant_1.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
+
+    end
+
+    it "can handle edge cases where registrant has already taken the road test" do
+      expect(@facility_1.administer_road_test(@registrant_1)).to eq(false)
+      @registrant_1.license_data[:license] = true
+      @facility_1.add_service('Road Test')
+      
+      expect {@facility_1.administer_road_test(@registrant_1)}.to raise_error(RoadTestAlreadyTakenError, "User has already taken the road test")
 
     end
   end

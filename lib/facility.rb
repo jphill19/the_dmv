@@ -1,12 +1,29 @@
 # custom errors site link = https://www.honeybadger.io/blog/ruby-custom-exceptions/
 
-class WrittenTestAlreadyTakenError< StandardError
-  def initialize(msg="User has already written take the test")
-    super
+class WrittenTestAlreadyTakenError < StandardError
+
+  attr_reader :message
+  def initialize(msg="User has already taken the written test")
+    @message = msg
+    super(@message)
   end
 end
 
+class RoadTestAlreadyTakenError < StandardError
+  attr_reader :message
+  def initialize(msg="User has already taken the road test")
+    @message = msg
+    super(@message)
+  end
+end
 
+class VehicleAlreadyRegisted < StandardError
+  attr_reader :message
+  def initialize(msg="This vehicle is already registered")
+    @message = msg
+    super(@message)
+  end
+end
 
 class Facility
   attr_accessor :name, :address, :phone, :services, :registered_vehicles, :collected_fees
@@ -31,6 +48,11 @@ class Facility
     if @services.include?('Vehicle Registration')
       raise TypeError, "Vehicle must be a vehicle object" unless vehicle.is_a?(Vehicle)
       
+      existing_vehicle_check = registered_vehicles.find { |existing_vehicle| existing_vehicle.vin == vehicle.vin}
+      if existing_vehicle_check
+        raise VehicleAlreadyRegisted.new()
+      end
+
       if vehicle.electric_vehicle?
         vehicle.set_platetype(:ev)
         @collected_fees += 200
@@ -60,6 +82,9 @@ class Facility
   def administer_written_test(registrant)
     if @services.include?('Written Test')
       raise TypeError, "registrant must be a registrant object" unless registrant.is_a?(Registrant)
+      raise WrittenTestAlreadyTakenError.new() unless registrant.license_data[:written] == false
+  
+        
       if registrant.age >= 16 && registrant.permit?
         registrant.license_data[:written] = true
       else
@@ -76,7 +101,8 @@ class Facility
   def administer_road_test(registrant)
     if @services.include?('Road Test')
       raise TypeError, "registrant must be a registrant object" unless registrant.is_a?(Registrant)
-      
+      raise RoadTestAlreadyTakenError.new() unless registrant.license_data[:license] == false
+
       if registrant.license_data[:written]
         return registrant.license_data[:license] = true
       else
