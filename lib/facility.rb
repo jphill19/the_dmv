@@ -20,7 +20,7 @@ class Facility
 
   def register_vehicle(vehicle)
 
-    if services.include?('Vehicle Registration')
+    if @services.include?('Vehicle Registration')
       raise TypeError, "Vehicle must be a vehicle object" unless vehicle.is_a?(Vehicle)
       
       if vehicle.electric_vehicle?
@@ -49,4 +49,18 @@ class Facility
 
   end
 
+  def administer_written_test(registrant)
+    if @services.include?('Written Test')
+      
+      if registrant.age >= 16 && registrant.permit?
+        registrant.license_data[:written] = true
+      else
+        return false
+
+    else
+      return false
+  end
+
 end
+
+
