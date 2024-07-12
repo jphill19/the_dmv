@@ -1,8 +1,8 @@
 #type error link: https://www.exceptionalcreatures.com/bestiary/TypeError.html
 
 class Registrant
-
-  attr_reader :name, :age, :permit, :license_data
+  attr_accessor :license_data
+  attr_reader :name, :age, :permit
 
   def initialize(name, age, permit = false)
     raise TypeError, "Name must be a String" unless name.is_a?(String)

@@ -16,6 +16,9 @@ RSpec.describe Vehicle do
       expect(@cruz.engine).to eq(:ice)
       expect(@cruz.registration_date).to eq(nil)
     end
+
+ 
+
   end
 
   describe '#antique?' do
@@ -32,5 +35,30 @@ RSpec.describe Vehicle do
       expect(@bolt.electric_vehicle?).to eq(true)
       expect(@camaro.electric_vehicle?).to eq(false)
     end
+  end
+
+  describe '#set_platetype' do
+    it 'can have its current plate_type changed' do
+      @cruz.set_platetype(:regular)
+      expect(@cruz.plate_type).to eq(:regular)
+    end
+
+    it 'raises an error if plate_type is not a symbol' do
+      
+      expect {@cruz.set_platetype("regular")}.to raise_error(TypeError, "plate_type must be a symbol")
+    end
+
+
+  end
+
+  describe '#set_registration_date' do
+    it 'sets the registration_date to a date object' do
+      @cruz.set_registration_date
+      expect(@cruz.registration_date).to be_an_instance_of(Date)
+      expect(@cruz.registration_date.year).to eq(Date.today.year)
+      expect(@cruz.registration_date.month).to eq(Date.today.month)
+      expect(@cruz.registration_date.day).to eq(Date.today.day)
+    end
+
   end
 end
