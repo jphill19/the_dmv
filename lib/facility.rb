@@ -19,20 +19,34 @@ class Facility
 
 
   def register_vehicle(vehicle)
-    raise TypeError, "Vehicle must be a vehicle object" unless name.is_a?(Vehicle)
 
-    if vehicle.engine == :ev
-      puts "ev"
-      @collected_fess += 200
-    elsif year - vehicle.age >= 25
-      puts "antique"
-      @collected_fess += 25
+    if services.include?('Vehicle Registration')
+      raise TypeError, "Vehicle must be a vehicle object" unless vehicle.is_a?(Vehicle)
+      
+      if vehicle.electric_vehicle?
+        vehicle.set_platetype(:ev)
+        @collected_fess += 200
+
+      elsif vehicle.antique?
+        vehicle.set_platetype(:antique)
+        @collected_fess += 25
+
+      else
+        vehicle.set_platetype(:regular)
+        @collected_fess += 100
+        
+      end
+
+      
+
+      @registered_vehicles << vehicle
+
+      return "#{vehicle.model} has been registered"
+
     else
-      puts "general"
-      @collected_fess += 100
+      "This Facility does not have this service"
     end
 
-    @register_vehicle << vehicle
   end
 
 end
