@@ -6,7 +6,8 @@ class Vehicle
               :make,
               :model,
               :engine,
-              :registration_date
+              :registration_date,
+              :plate_type
 
   def initialize(vehicle_details)
     @vin = vehicle_details[:vin]
@@ -15,6 +16,7 @@ class Vehicle
     @model = vehicle_details[:model]
     @engine = vehicle_details[:engine]
     @registration_date = nil
+    @plate_type = :placeholder
   end
 
   def antique?
@@ -24,4 +26,10 @@ class Vehicle
   def electric_vehicle?
     @engine == :ev
   end
+
+  def set_platetype(type)
+    raise TypeError, "plate_type must be a symbol" unless type.is_a?(Symbol)
+    @plate_type = type
+  end
+
 end

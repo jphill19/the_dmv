@@ -33,4 +33,18 @@ RSpec.describe Vehicle do
       expect(@camaro.electric_vehicle?).to eq(false)
     end
   end
+
+  describe '#set_platetype' do
+    it 'can have its current plate_type changed' do
+      @cruz.set_platetype(:regular)
+      expect(@cruz.plate_type).to eq(:regular)
+    end
+
+    it 'raises an error if plate_type is not a symbol' do
+      
+      expect {@cruz.set_platetype("regular")}.to raise_error(TypeError, "plate_type must be a symbol")
+    end
+
+    
+  end
 end

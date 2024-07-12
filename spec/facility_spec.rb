@@ -19,7 +19,7 @@ RSpec.describe Facility do
     end
   end
 
-  describe '#add service' do
+  describe '#add_service' do
     it 'can add available services' do
       expect(@facility.services).to eq([])
       @facility.add_service('New Drivers License')
@@ -28,4 +28,16 @@ RSpec.describe Facility do
       expect(@facility.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])
     end
   end
+
+
+  describe '#register_vehicle' do
+    it 'will raise an error if the vehicle passed is not a vehicle object' do
+      expect {@facility.register_vehicle("cruz")}.to raise_error(TypeError, "Vehicle must be a vehicle object")
+    end
+
+
+  end
+
+
+
 end
