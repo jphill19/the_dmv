@@ -22,6 +22,7 @@ RSpec.describe Vehicle do
       expect(@factory.create_vehicles(@wa_ev_registrations)).to eq(@factory.vehicles_created)
     end
     
+  end
   
 
 end
