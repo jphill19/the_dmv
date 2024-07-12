@@ -1,7 +1,7 @@
 
 
 class Facility
-  attr_accessor :name, :address, :phone, :services, :registered_vehicles, :collected_fess
+  attr_accessor :name, :address, :phone, :services, :registered_vehicles, :collected_fees
 
   def initialize(info)
     @name = info[:name]
@@ -9,7 +9,7 @@ class Facility
     @phone = info[:phone]
     @services = []
     @registered_vehicles = []
-    @collected_fess = 0
+    @collected_fees = 0
   end
 
   def add_service(service)
@@ -25,15 +25,15 @@ class Facility
       
       if vehicle.electric_vehicle?
         vehicle.set_platetype(:ev)
-        @collected_fess += 200
+        @collected_fees += 200
 
       elsif vehicle.antique?
         vehicle.set_platetype(:antique)
-        @collected_fess += 25
+        @collected_fees += 25
 
       else
         vehicle.set_platetype(:regular)
-        @collected_fess += 100
+        @collected_fees += 100
 
       end
 
