@@ -34,10 +34,10 @@ class Facility
       else
         vehicle.set_platetype(:regular)
         @collected_fess += 100
-        
+
       end
 
-      
+      vehicle.set_registration_date
 
       @registered_vehicles << vehicle
 

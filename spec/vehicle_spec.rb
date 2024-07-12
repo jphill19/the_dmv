@@ -45,6 +45,17 @@ RSpec.describe Vehicle do
       expect {@cruz.set_platetype("regular")}.to raise_error(TypeError, "plate_type must be a symbol")
     end
 
-    
+
+  end
+
+  describe '#set_registration_date' do
+    it 'sets the registration_date to a date object' do
+      @cruz.set_registration_date
+      expect(@cruz.registration_date).to be_an_instance_of(Date)
+      expect(@cruz.registration_date.year).to eq(Date.today.year)
+      expect(@cruz.registration_date.month).to eq(Date.today.month)
+      expect(@cruz.registration_date.day).to eq(Date.today.day)
+    end
+
   end
 end

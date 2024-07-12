@@ -45,7 +45,7 @@ RSpec.describe Facility do
       expect {@facility_1.register_vehicle("cruz")}.to raise_error(TypeError, "Vehicle must be a vehicle object")
     end
 
-    it ""
+    
 
   end
 
