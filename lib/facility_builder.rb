@@ -5,4 +5,28 @@ class FacilityBuilder
     @co_facilities = []
   end
 
+
+  def create_facilities(data)
+
+    data.each do |data|
+      new_facility = Facility.new({
+        name: data[:dmv_office],
+        address: "#{data[:address_li]} #{data[:address__1]} #{data[:city]} #{data[:state]} #{data[:zip]}",
+        phone: data[:phone]
+      })
+
+      if data[:services_p].include?('registration')
+        puts "has registration"
+        new_facility.add_service("Vehicle Registration")
+      end
+      if data[:service_p].include?("renewals")
+        new_facility.add_service("Renew Drivers License")
+      end
+
+      @co_facilities << new_facility
+
+    end
+
+  end
+
 end

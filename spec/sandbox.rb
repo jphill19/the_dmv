@@ -15,9 +15,15 @@ new_data = DmvDataService.new.co_dmv_office_locations
 
 # puts new_data[0]
 
-puts new_data[0][:dmv_office]
+# puts new_data[0][:dmv_office]
 
-puts new_data[0][:address_li] + ' ' +  new_data[0][:address__1] + ' ' +  new_data[0][:city] + ' ' +  new_data[0][:state] + ' ' + new_data[0][:zip] 
+# puts new_data[0][:address_li] + ' ' +  new_data[0][:address__1] + ' ' +  new_data[0][:city] + ' ' +  new_data[0][:state] + ' ' + new_data[0][:zip] 
 
-puts new_data[0][:phone]
+# puts new_data[0][:phone]
 
+new_data.each do |data|
+  puts data[:services_p].class
+  if data[:services_p].include?('registration')
+    puts true
+  end
+end
