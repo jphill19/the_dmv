@@ -6,7 +6,7 @@ class FacilityBuilder
   end
 
 
-  def create_facilities(data)
+  def create_co_facilities(data)
 
     data.each do |data|
       new_facility = Facility.new({
@@ -16,17 +16,18 @@ class FacilityBuilder
       })
 
       if data[:services_p].include?('registration')
-        puts "has registration"
+
         new_facility.add_service("Vehicle Registration")
       end
-      if data[:service_p].include?("renewals")
+
+      if data[:services_p].include?("renewals")
         new_facility.add_service("Renew Drivers License")
       end
 
       @co_facilities << new_facility
 
     end
-
+    return @co_facilities
   end
 
 end

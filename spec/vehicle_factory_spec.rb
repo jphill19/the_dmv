@@ -18,8 +18,12 @@ RSpec.describe VehicleFactory do
       expect(@factory.create_vehicles(@wa_ev_registrations)[0]).to be_an_instance_of(Vehicle)
     end
 
-    it "stores the value of each vehicle in vehicles_created " do
+    it "stores each vehicle created in vehicles_created " do
       expect(@factory.create_vehicles(@wa_ev_registrations)).to eq(@factory.vehicles_created)
+    end
+
+    it "creates a vehicle object for each vehicle coming from the api" do
+      expect(@factory.create_vehicles(@wa_ev_registrations).length).to eq(@wa_ev_registrations.length)
     end
     
   end

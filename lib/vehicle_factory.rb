@@ -15,9 +15,8 @@ class VehicleFactory
       })
 
       @vehicles_created << new_vehicle
-      return @vehicles_created
     end
-
+    return @vehicles_created
   end
 
 
