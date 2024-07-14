@@ -1,8 +1,9 @@
 class FacilityBuilder
 
-  attr_reader :co_facilities
+  attr_reader :co_facilities, :ny_facilities
   def initialize
     @co_facilities = []
+    @ny_facilities = []
   end
 
 
@@ -28,6 +29,20 @@ class FacilityBuilder
 
     end
     return @co_facilities
+  end
+
+  def create_ny_facilities(data)
+    data.def
+    @ny_facilities = data.map do |data|
+      
+
+      new_facility = Facility.new({
+        name: "#{data[:office_name]} #{data[:office_type]}",
+        address: "#{data[:street_address_line_1]} #{data[:city]} #{data[:state]} #{data[:zip_code]}",
+        phone: data[:public_phone_number]
+      })
+    end
+    return @ny_facilities
   end
 
 end

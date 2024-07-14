@@ -14,5 +14,5 @@ class Dmv
       facility.services.include?(service)
     end
   end
-
+  
 end
