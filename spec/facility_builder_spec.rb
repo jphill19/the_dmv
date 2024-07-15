@@ -4,7 +4,7 @@ RSpec.describe FacilityBuilder do
   before(:each) do
     @facility_builder = FacilityBuilder.new
     @co_dmv_offices = DmvDataService.new.co_dmv_office_locations
-    @ny_data = DmvDataService.new.ny_dmv_office_locations
+    @ny_dmv_offices = DmvDataService.new.ny_dmv_office_locations
   end
 
   describe "#initialize" do
@@ -54,10 +54,36 @@ RSpec.describe FacilityBuilder do
 
   describe "#create_ny_facilities" do
     it "can create new facility objects" do
-      expect(@facility_builder.create_ny_facilities(@ny_data)[0]).to be_an_instance_of(Facility)
+      expect(@facility_builder.create_ny_facilities(@ny_dmv_offices[0]).to be_an_instance_of(Facility)
+    end
+
+    it "stores each ny facility created in @co_facilities" do
+      expect(@facility_builder.create_ny_facilities(@ny_dmv_offices)).to eq(@facility_builder.ny_facilities)
+    end
+
+    it "it creates a facility object for each facility coming from the api" do
+      expect(@facility_builder.create_ny_facilities(@ny_dmv_offices).length).to eq(@ny_dmv_offices.length)
+    end
+
+    it "creates facilities objects with the appropriate information" do
+      @facility_builder.create_ny_facilities(@ny_dmv_offices)
+
+      expect(@facility_builder.ny_facilities[0].name). to eq("HUNTINGTON DISTRICT OFFICE")
+      expect(@facility_builder.ny_facilities[0].address). to eq("1815 E JERICHO TURNPIKE HUNTINGTON NY 11743")
+      expect(@facility_builder.ny_facilities[0].phone). to eq("7184774820")
+    end
+
+    it "every attribute for each facility has a value (a truthy value) " do
+      @facility_builder.create_ny_facilities(@ny_dmv_offices)
+
+        @facility_builder.ny_facilities do |facility|
+          expect(facility.name).to be_truthy
+          expect(facility.address).to be_truthy
+          expect(facility.phone).to be_truthy
+
+        end
     end
 
   end
-
 
 end

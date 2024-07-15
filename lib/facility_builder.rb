@@ -10,6 +10,7 @@ class FacilityBuilder
   def create_co_facilities(data)
 
     data.each do |data|
+      data.default = "not available"
       new_facility = Facility.new({
         name: data[:dmv_office],
         address: "#{data[:address_li]} #{data[:address__1]} #{data[:city]} #{data[:state]} #{data[:zip]}",
@@ -32,9 +33,9 @@ class FacilityBuilder
   end
 
   def create_ny_facilities(data)
-    data.def
+
     @ny_facilities = data.map do |data|
-      
+      data.default = "not available"
 
       new_facility = Facility.new({
         name: "#{data[:office_name]} #{data[:office_type]}",
@@ -44,5 +45,10 @@ class FacilityBuilder
     end
     return @ny_facilities
   end
+
+
+  def create_mo_facilities(data)
+
+    
 
 end

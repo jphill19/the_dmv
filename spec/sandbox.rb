@@ -5,10 +5,10 @@ require "./lib/dmv_data_service"
 
 # puts wa_ev_registrations[3]
 
-test = "hello"
+# test = "hello"
 
-if test
-  puts 
+# if test
+#   puts 
 # wa_ev_registrations.each do |vehicle|
 
 #   puts vehicle[:vin_1_10]
@@ -46,3 +46,6 @@ if test
 
 # puts ny_data[0][:public_phone_number]
 
+mo = DmvDataService.new.mo_dmv_office_locations
+
+mo[0]
