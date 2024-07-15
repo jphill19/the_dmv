@@ -4,6 +4,7 @@ class FacilityBuilder
   def initialize
     @co_facilities = []
     @ny_facilities = []
+    @mo_facilities = []
   end
 
 
@@ -49,6 +50,18 @@ class FacilityBuilder
 
   def create_mo_facilities(data)
 
-    
+    @mo_facilities =  data.map do |data|
+      data.default = "not available"
+      new_facility = Facility.new({
+        name: "#{data[:office_name]} #{data[:office_type]}",
+        address: "#{data[:street_address_line_1]} #{data[:city]} #{data[:state]} #{data[:zip_code]}",
+        phone: data[:public_phone_number]
+      })
+
+    end
+    return @mo_facilities
+  end
+
+
 
 end
