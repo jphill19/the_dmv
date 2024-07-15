@@ -5,8 +5,9 @@ class VehicleFactory
   end
 
   def create_vehicles(data)
-    data.default = "not available"
+
     data.each do |vehicle|
+      vehicle.default = "not available"
       new_vehicle = Vehicle.new({
         vin: vehicle[:vin_1_10],
         year: vehicle[:model_year],
