@@ -5,6 +5,7 @@ class VehicleFactory
   end
 
   def create_vehicles(data)
+    data.default = "not available"
     data.each do |vehicle|
       new_vehicle = Vehicle.new({
         vin: vehicle[:vin_1_10],
@@ -15,9 +16,10 @@ class VehicleFactory
       })
 
       @vehicles_created << new_vehicle
-      return @vehicles_created
     end
-
+    return @vehicles_created
   end
+
+
 
 end
