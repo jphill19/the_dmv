@@ -29,9 +29,12 @@ class Facility
   attr_accessor :name, :address, :phone, :services, :registered_vehicles, :collected_fees
 
   def initialize(info)
+    info.default = "not availabe"
     @name = info[:name]
     @address = info[:address]
     @phone = info[:phone]
+    @holidays = info[:holidays] # iteration 4
+    @daily_hours = info[:daily_hours] #iteration 4
     @services = []
     @registered_vehicles = []
     @collected_fees = 0
