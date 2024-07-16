@@ -29,7 +29,7 @@ RSpec.describe VehicleFactory do
     it "creates vehicle objects with the expected values" do
       #picking a random index number to demonstrate
       expect(@factory.create_vehicles(@wa_ev_registrations)[3].vin).to eq("3C3CFFGE5F")
-      expect(@factory.create_vehicles(@wa_ev_registrations)[3].year).to eq("2015")
+      expect(@factory.create_vehicles(@wa_ev_registrations)[3].year).to eq(2015)
       expect(@factory.create_vehicles(@wa_ev_registrations)[3].make).to eq("FIAT")
       expect(@factory.create_vehicles(@wa_ev_registrations)[3].model).to eq("500")
       expect(@factory.create_vehicles(@wa_ev_registrations)[3].engine).to eq(:ev)
