@@ -29,26 +29,26 @@ def max_count (data)
   return [max_key, max_count]
 end
 
-def count
+
 #Generatiing new Hashes & Array to perform analytics (sanitizing data)
 factory.vehicles_created.each do |test|
   vehicle_model_count[test.model] += 1
   vehicle_make_count[test.make] += 1
   vehicle_years_count[test.year] += 1
-  
+
 end
 
 max_model = max_count(vehicle_model_count)
 max_make = max_count(vehicle_make_count)
+vehicle_years_sorted = vehicle_years_count.sort_by { |key| key}
 
-puts vehicle_make_model_count[5]
+
 puts "The most popular model regisred is: #{max_model[0]}, with a total of #{max_model[1]}/#{factory.vehicles_created.length}\n"
 puts "The most popular make registered is #{max_make[0]}, with a total of #{max_make[1]}/#{factory.vehicles_created.length}\n"
 
-puts "Vehicle By Years"
-vehicle_years_count.each do |key, value|
-  
-
+puts "\nVehicle By Years"
+vehicle_years_sorted.each do |key, value|
+  puts "Year: #{key}, Total: #{value}"
 end
 
 puts 
