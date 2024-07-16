@@ -26,7 +26,7 @@ class VehicleAlreadyRegisted < StandardError
 end
 
 class Facility
-  attr_accessor :name, :address, :phone, :services, :registered_vehicles, :collected_fees
+  attr_accessor :name, :address, :phone, :services, :registered_vehicles, :collected_fees, :holidays, :daily_hours
 
   def initialize(info)
     info.default = "not availabe"

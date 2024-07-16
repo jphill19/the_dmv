@@ -78,7 +78,9 @@ class FacilityBuilder
         name: "#{data[:name]}",
         address: "#{data[:address1]} #{data[:city]} #{data[:state]} #{data[:zipcode]}",
         phone: data[:phone],
+        daily_hours: data[:daysopen],
         holidays: data[:holidaysclosed].split(",") # iteration 4
+      
     })
 
     end
