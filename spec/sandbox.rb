@@ -17,7 +17,7 @@ new_data = DmvDataService.new.ny_registrations
 
 # puts "\n#{ny_dmv_offices[0]}"
 
-puts "\n\n#{new_data[1]}}"
+p new_data[2]
 
 
 # facility = Facility.new({"jose" => 1})
