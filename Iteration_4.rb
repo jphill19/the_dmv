@@ -5,15 +5,18 @@ require './lib/vehicle.rb'
 ###### Option 3 ---> Analytics #######
 
 wa_ev_registrations = DmvDataService.new.wa_ev_registrations
+puts wa_ev_registrations[0]
 factory = VehicleFactory.new
 factory.create_vehicles(wa_ev_registrations)
 
 
-# Hash for 
+# Hash for years, make, model
 vehicle_make_count = Hash.new(0)
 vehicle_model_count = Hash.new(0)
 vehicle_years_count = Hash.new(0)
 
+#Hash for counties
+county_count = Hash.new(0)
 
 
 def max_count (data)
@@ -38,6 +41,11 @@ factory.vehicles_created.each do |test|
 
 end
 
+#Generating new hash for the county with the most vehicle
+wa_ev_registrations.each do |vehicle|
+  county_count[vehicle[:county]] += 1
+end
+
 max_model = max_count(vehicle_model_count)
 max_make = max_count(vehicle_make_count)
 vehicle_years_sorted = vehicle_years_count.sort_by { |key| key}
@@ -51,4 +59,4 @@ vehicle_years_sorted.each do |key, value|
   puts "Year: #{key}, Total: #{value}"
 end
 
-puts 
+puts "\nMost popular county is #{}"
