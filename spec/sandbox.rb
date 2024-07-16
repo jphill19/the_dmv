@@ -9,10 +9,8 @@ require './lib/vehicle_factory'
 require './lib/facility_builder'
 
 
-facility_builder = FacilityBuilder.new
-co_dmv_offices = DmvDataService.new.co_dmv_office_locations
-ny_dmv_offices = DmvDataService.new.ny_dmv_office_locations
-mo_dmv_offices =  DmvDataService.new.mo_dmv_office_locations
+factory = VehicleFactory.new
+
 
 # puts "\n#{co_dmv_offices[0]}"
 
