@@ -5,7 +5,7 @@ require './lib/vehicle.rb'
 ###### Option 3 ---> Analytics #######
 
 wa_ev_registrations = DmvDataService.new.wa_ev_registrations
-puts wa_ev_registrations[0]
+
 factory = VehicleFactory.new
 factory.create_vehicles(wa_ev_registrations)
 
@@ -50,13 +50,17 @@ max_model = max_count(vehicle_model_count)
 max_make = max_count(vehicle_make_count)
 vehicle_years_sorted = vehicle_years_count.sort_by { |key| key}
 
+most_popular_county = county_count.max_by do |key, value|
+  value
+end
 
-puts "The most popular model regisred is: #{max_model[0]}, with a total of #{max_model[1]}/#{factory.vehicles_created.length}\n"
-puts "The most popular make registered is #{max_make[0]}, with a total of #{max_make[1]}/#{factory.vehicles_created.length}\n"
+puts "\nThe most popular model regisred is: #{max_model[0]}, with a total of #{max_model[1]}/#{factory.vehicles_created.length}\n"
+puts "\nThe most popular make registered is #{max_make[0]}, with a total of #{max_make[1]}/#{factory.vehicles_created.length}\n"
 
 puts "\nVehicle By Years"
 vehicle_years_sorted.each do |key, value|
-  puts "Year: #{key}, Total: #{value}"
+  puts "\tYear: #{key}, Total: #{value}"
 end
 
-puts "\nMost popular county is #{}"
+
+puts "\nMost popular county is #{most_popular_county[0]} with a total of #{most_popular_county[1]}/#{factory.vehicles_created.length}"
