@@ -4,7 +4,7 @@ class VehicleFactory
     @vehicles_created = []
   end
 
-  def create_vehicles(data)
+  def create_wa_vehicles(data)
 
     data.each do |vehicle|
       vehicle.default = "not available"

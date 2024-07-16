@@ -10,14 +10,14 @@ require './lib/facility_builder'
 
 
 factory = VehicleFactory.new
-
+new_data = DmvDataService.new.ny_registrations
 
 # puts "\n#{co_dmv_offices[0]}"
 
 
 # puts "\n#{ny_dmv_offices[0]}"
 
-puts "\n\n#{mo_dmv_offices[1]}"
+puts "\n\n#{new_data[1]}}"
 
 
 # facility = Facility.new({"jose" => 1})
